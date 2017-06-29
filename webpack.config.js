@@ -43,7 +43,7 @@ module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
     path: OUTPUT_DIR,
-    publicPath: '/',
+    publicPath: './',
     filename: 'bundle.js',
   },
   module: {
@@ -76,10 +76,11 @@ module.exports = {
       title: 'Slackier',
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.SOCKET_SERVER': JSON.stringify(process.env.SOCKET_SERVER),
     }),
   ],
-  devtool: 'cheap-source-map',
+  devtool: 'source-map',
   devServer: {
     contentBase: OUTPUT_DIR,
     stats: {
