@@ -20,11 +20,15 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.node.scrollIntoView();
+    if (this.node) {
+      this.node.scrollIntoView();
+    }
   }
 
   componentDidUpdate() {
-    this.node.scrollIntoView();
+    if (this.node) {
+      this.node.scrollIntoView();
+    }
   }
 
   handleChange = (event) => {
