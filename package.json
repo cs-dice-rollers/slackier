@@ -11,7 +11,8 @@
     "clean": "npm run clean:build && npm run clean:node_modules",
     "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.config.js",
     "lint:eslint": "eslint .",
-    "lint": "npm run lint:eslint",
+    "lint:sass-lint": "sass-lint -c ./.sass-lint.yml './src/**/*.scss' -v",
+    "lint": "npm run lint:eslint && npm run lint:sass-lint",
     "production": "electron ./build/main.js",
     "start": "electron -r babel-register .",
     "test": "npm run lint"
@@ -40,6 +41,7 @@
     "file-loader": "0.11.2",
     "html-webpack-plugin": "2.29.0",
     "node-sass": "4.5.3",
+    "sass-lint": "1.10.2",
     "sass-loader": "6.0.6",
     "style-loader": "0.18.2",
     "webpack": "2.6.1",

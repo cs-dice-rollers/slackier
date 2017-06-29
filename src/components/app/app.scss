@@ -1,0 +1,12 @@
+$swatch01: #000;
+$swatch02: #fff;
+
+body {
+  background-color: $swatch02;
+}
+
+.header {
+  font-family: helvetica;
+  font-weight: 200;
+  color: $swatch01;
+}
