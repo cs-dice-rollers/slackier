@@ -12,7 +12,7 @@
     "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.config.js",
     "lint:eslint": "eslint .",
     "lint:sass-lint": "sass-lint -c ./.sass-lint.yml './src/**/*.scss' -v",
-    "lint": "npm run lint:eslint",
+    "lint": "npm run lint:eslint && lint:sass-lint",
     "production": "electron ./build/main.js",
     "start": "electron -r babel-register .",
     "test": "npm run lint"

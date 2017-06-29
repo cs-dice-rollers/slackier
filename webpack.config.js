@@ -29,8 +29,6 @@ const sassLoaderConfig = { loader: 'sass-loader',
     sourceMap: true,
   },
 };
-// https://github.com/postcss/postcss-loader
-const postCssLoaderConfig = { loader: 'postcss-loader' };
 
 const sassLoaders = [styleLoaderConfig, cssLoaderConfig, sassLoaderConfig];
 
