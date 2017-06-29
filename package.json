@@ -21,7 +21,8 @@
     "debug-caller": "2.2.0",
     "electron": "1.6.11",
     "react": "15.6.1",
-    "react-dom": "15.6.1"
+    "react-dom": "15.6.1",
+    "socket.io-client": "2.0.3"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",

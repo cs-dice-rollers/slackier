@@ -1,6 +1,9 @@
 import React from 'react';
+import io from 'socket.io-client';
 
 import style from './app.scss';
+
+io('http://localhost:3000');
 
 export default function App() {
   return (
