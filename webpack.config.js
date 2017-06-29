@@ -76,7 +76,8 @@ module.exports = {
       title: 'Slackier',
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.SOCKET_SERVER': JSON.stringify(process.env.SOCKET_SERVER),
     }),
   ],
   devtool: 'source-map',

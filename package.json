@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A chat app",
   "main": "main.js",
+  "productName": "Slackier",
   "scripts": {
     "build:client": "NODE_ENV=production webpack --config ./webpack.config.js --progress --profile --colors",
     "build:src": "./node_modules/.bin/babel ./src --out-dir ./build --source-maps --copy-files",
@@ -14,13 +15,13 @@
     "lint:eslint": "eslint .",
     "lint:sass-lint": "sass-lint -c ./.sass-lint.yml './src/**/*.scss' -v",
     "lint": "npm run lint:eslint && npm run lint:sass-lint",
+    "package-app": "electron-packager . --asar --icon=assets/slackier.icns",
     "production": "NODE_ENV=production electron ./main.js",
     "start": "electron -r babel-register .",
     "test": "npm run lint"
   },
   "dependencies": {
     "debug-caller": "2.2.0",
-    "electron": "1.6.11",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "socket.io-client": "2.0.3"
@@ -33,6 +34,7 @@
     "babel-preset-electron": "1.4.15",
     "babel-preset-react": "6.24.1",
     "css-loader": "0.28.4",
+    "electron": "1.6.11",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
     "eslint-config-airbnb-base": "11.2.0",
