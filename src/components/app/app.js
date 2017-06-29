@@ -1,9 +1,14 @@
 import React from 'react';
-import io from 'socket.io-client';
+import socket from '../../lib/socket';
 
 import style from './app.scss';
 
-io('http://localhost:3000');
+socket.on('NEW_MESSAGE', (data) => {
+  console.log(data);
+});
+
+socket.emit('MESSAGE', { message: 'yo' });
+
 
 export default function App() {
   return (
