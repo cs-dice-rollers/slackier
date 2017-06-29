@@ -2,10 +2,10 @@
   "name": "slackier",
   "version": "1.0.0",
   "description": "A chat app",
-  "main": "app/main.js",
+  "main": "main.js",
   "scripts": {
-    "build:app": "./node_modules/.bin/babel ./app --out-dir ./build --source-maps --copy-files",
-    "build": "npm run lint && npm run clean:build && npm run build:app",
+    "build:src": "./node_modules/.bin/babel ./src --out-dir ./build --source-maps --copy-files",
+    "build": "npm run lint && npm run clean:build && npm run build:src",
     "clean:build": "rimraf build && rimraf public",
     "clean:node_modules": "rimraf node_modules",
     "clean": "npm run clean:build && npm run clean:node_modules",
