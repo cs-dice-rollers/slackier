@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Config directories
@@ -10,6 +11,14 @@ const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 // need to be added to this array so webpack will pick them up
 const defaultInclude = [SRC_DIR];
 
+let nodeModules = {};
+fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bin'].indexOf(x) === -1;
+  })
+  .forEach(function(mod) {
+    nodeModules[mod] = 'commonjs ' + mod;
+  });
 
 // https://github.com/webpack/style-loader
 const styleLoaderConfig = { loader: 'style-loader' };
@@ -79,4 +88,5 @@ module.exports = {
       children: false,
     },
   },
+  externals: nodeModules,
 };
