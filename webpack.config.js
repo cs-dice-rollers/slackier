@@ -10,6 +10,30 @@ const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 // need to be added to this array so webpack will pick them up
 const defaultInclude = [SRC_DIR];
 
+
+// https://github.com/webpack/style-loader
+const styleLoaderConfig = { loader: 'style-loader' };
+// https://github.com/webpack/css-loader
+const cssLoaderConfig = { loader: 'css-loader',
+  options: {
+    sourceMap: true,
+    modules: true,
+    importLoaders: 1,
+    localIdentName: '[name]__[local]',
+    minimize: true,
+  },
+};
+// https://github.com/jtangelder/sass-loader
+const sassLoaderConfig = { loader: 'sass-loader',
+  options: {
+    sourceMap: true,
+  },
+};
+// https://github.com/postcss/postcss-loader
+const postCssLoaderConfig = { loader: 'postcss-loader' };
+
+const sassLoaders = [styleLoaderConfig, cssLoaderConfig, sassLoaderConfig];
+
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
@@ -20,8 +44,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        test: /\.scss$/,
+        use: sassLoaders,
         include: defaultInclude,
       },
       {
