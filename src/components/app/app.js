@@ -1,13 +1,13 @@
 import React from 'react';
-import socket from '../../lib/socket';
+import { sendMessage, registerMessageListener } from '../../lib/socket';
 
 import style from './app.scss';
 
-socket.on('NEW_MESSAGE', (data) => {
-  console.log(data);
-});
+sendMessage('hello');
 
-socket.emit('MESSAGE', { message: 'yo' });
+registerMessageListener((messageData) => {
+  console.log(messageData.text);
+});
 
 
 export default function App() {
