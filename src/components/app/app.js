@@ -1,20 +1,71 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { sendMessage, registerMessageListener } from '../../lib/socket';
 
 import style from './app.scss';
 
-sendMessage('hello');
+export default class App extends Component {
+  constructor(props) {
+    super(props);
 
-registerMessageListener((messageData) => {
-  console.log(messageData.text);
-});
+    this.state = {
+      log: [],
+      message: '',
+    };
 
+    registerMessageListener((messageData) => {
+      this.setState({
+        log: this.state.log.concat(messageData.text),
+      });
+    });
+  }
 
-export default function App() {
-  return (
-    <div>
-      <h1 className={style.header}>Hello, Electron!</h1>
-      <p>This is the app</p>
-    </div>
-  );
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    sendMessage(this.state.message);
+
+    this.setState({
+      message: '',
+    });
+  }
+
+  render() {
+    return (
+      <div className={style.container}>
+        <h1 className={style.header}>This is Slackier</h1>
+
+        <div className={style.log}>
+          {
+            this.state.log.map((message, i) => {
+              const index = i;
+              return (
+                <div className={style.note} key={index}>
+                  <p>{message}</p>
+                </div>
+              );
+            })
+          }
+
+        </div>
+
+        <form onSubmit={this.handleSubmit}>
+          <input
+            className={style.message}
+            name="message"
+            value={this.state.message}
+            onChange={this.handleChange}
+            placeholder="enter message"
+            autoComplete="off"
+          />
+          <button type="submit" className={style.submitButton} />
+        </form>
+      </div>
+    );
+  }
 }

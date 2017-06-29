@@ -11,13 +11,11 @@ const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 // need to be added to this array so webpack will pick them up
 const defaultInclude = [SRC_DIR];
 
-let nodeModules = {};
+const nodeModules = {};
 fs.readdirSync('node_modules')
-  .filter(function(x) {
-    return ['.bin'].indexOf(x) === -1;
-  })
-  .forEach(function(mod) {
-    nodeModules[mod] = 'commonjs ' + mod;
+  .filter(x => ['.bin'].indexOf(x) === -1)
+  .forEach((mod) => {
+    nodeModules[mod] = `commonjs${mod}`;
   });
 
 // https://github.com/webpack/style-loader
