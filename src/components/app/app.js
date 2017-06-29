@@ -19,6 +19,14 @@ export default class App extends Component {
     });
   }
 
+  componentDidMount() {
+    this.node.scrollIntoView();
+  }
+
+  componentDidUpdate() {
+    this.node.scrollIntoView();
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -45,7 +53,8 @@ export default class App extends Component {
             this.state.log.map((message, i) => {
               const index = i;
               return (
-                <div className={style.note} key={index}>
+                /* eslint-disable no-return-assign */
+                <div className={style.note} key={index} ref={node => this.node = node}>
                   <p>{message}</p>
                 </div>
               );
