@@ -2,11 +2,30 @@
   "name": "slackier",
   "version": "1.0.0",
   "description": "A chat app",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
-    "start": "electron ."
+    "build:app": "./node_modules/.bin/babel ./app --out-dir ./build --source-maps --copy-files",
+    "build": "npm run lint && npm run clean:build && npm run build:app",
+    "clean:build": "rimraf build && rimraf public",
+    "clean:node_modules": "rimraf node_modules",
+    "lint:eslint": "eslint .",
+    "lint": "npm run lint:eslint",
+    "production": "electron ./build/main.js",
+    "start": "electron -r babel-register .",
+    "test": "npm run lint"
+  },
+  "dependencies": {
+    "electron": "1.6.11"
   },
   "devDependencies": {
-    "electron": "1.6.11"
+    "babel-cli": "6.24.1",
+    "babel-eslint": "7.2.3",
+    "babel-preset-electron": "1.4.15",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "15.0.1",
+    "eslint-config-airbnb-base": "11.2.0",
+    "eslint-plugin-import": "2.6.1",
+    "eslint-plugin-jsx-a11y": "5.1.0",
+    "eslint-plugin-react": "7.1.0"
   }
 }
