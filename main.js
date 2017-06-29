@@ -7,11 +7,7 @@ const url = require('url');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-// Keep a reference for dev mode
-let dev = false;
-if (process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath)) {
-  dev = true;
-}
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
 function createWindow() {
   // Create the browser window.
@@ -21,7 +17,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   let indexPath;
-  if (dev && process.argv.indexOf('--noDevServer') === -1) {
+  if (!IS_PRODUCTION) {
     indexPath = url.format({
       protocol: 'http:',
       host: 'localhost:8080',
@@ -41,7 +37,7 @@ function createWindow() {
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
     // Open the DevTools automatically if developing
-    if (dev) {
+    if (!IS_PRODUCTION) {
       mainWindow.webContents.openDevTools();
     }
   });

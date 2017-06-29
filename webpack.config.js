@@ -43,7 +43,7 @@ module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
     path: OUTPUT_DIR,
-    publicPath: '/',
+    publicPath: './',
     filename: 'bundle.js',
   },
   module: {
@@ -79,7 +79,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
-  devtool: 'cheap-source-map',
+  devtool: 'source-map',
   devServer: {
     contentBase: OUTPUT_DIR,
     stats: {
