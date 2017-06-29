@@ -2,11 +2,16 @@
   "name": "slackier",
   "version": "1.0.0",
   "description": "A chat app",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
+    "build:app": "./node_modules/.bin/babel ./app --out-dir ./build --source-maps --copy-files",
+    "build": "npm run lint && npm run clean:build && npm run build:app",
+    "clean:build": "rimraf build && rimraf public",
+    "clean:node_modules": "rimraf node_modules",
     "lint:eslint": "eslint .",
     "lint": "npm run lint:eslint",
-    "start": "electron .",
+    "production": "electron ./build/main.js",
+    "start": "electron -r babel-register .",
     "test": "npm run lint"
   },
   "dependencies": {
