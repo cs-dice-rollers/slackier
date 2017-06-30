@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 // Config directories
 const SRC_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = path.resolve(__dirname, 'dist');
@@ -43,7 +44,7 @@ module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
     path: OUTPUT_DIR,
-    publicPath: './',
+    publicPath: IS_PRODUCTION ? './' : '/',
     filename: 'bundle.js',
   },
   module: {
@@ -82,7 +83,6 @@ module.exports = {
   ],
   devtool: 'source-map',
   devServer: {
-    contentBase: OUTPUT_DIR,
     stats: {
       colors: true,
       chunks: false,
