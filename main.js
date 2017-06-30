@@ -22,7 +22,7 @@ function createWindow() {
   if (!IS_PRODUCTION) {
     indexPath = url.format({
       protocol: 'http:',
-      host: 'localhost:8080',
+      host: '0.0.0.0:8080',
       pathname: 'index.html',
       slashes: true,
     });
